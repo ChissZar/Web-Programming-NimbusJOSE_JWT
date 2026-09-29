@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Login - JWT Nimbus Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .auth-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 440px;
+            padding: 35px;
+        }
+        .brand-badge {
+            display: inline-block;
+            background: rgba(30, 60, 114, 0.1);
+            color: #1e3c72;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 10px 14px;
+            border: 1.5px solid #e2e8f0;
+        }
+        .form-control:focus {
+            border-color: #1e3c72;
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.15);
+        }
+        .btn-custom {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-weight: 600;
+            padding: 11px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #162c54, #1e3c72);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .nav-pills .nav-link {
+            color: #64748b;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #1e3c72;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-card">
+        <div class="text-center mb-4">
+            <span class="brand-badge">⚡ Spring Boot 3 & Nimbus JOSE+JWT</span>
+            <h3 class="fw-bold mb-1">Đăng nhập tài khoản</h3>
+            <p class="text-muted small">Nhập thông tin xác thực để lấy JWT Token</p>
+        </div>
+
+        <ul class="nav nav-pills nav-fill mb-4" id="authTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login-panel">Đăng nhập</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="register-tab" data-bs-toggle="pill" data-bs-target="#register-panel">Đăng ký mới</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- TAB LOGIN (Tuân thủ chính xác ID slide 32) -->
+            <div class="tab-pane fade show active" id="login-panel">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required="required" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" required="required" autocomplete="on" placeholder="••••••••">
+                    </div>
+                    <button id="login" class="btn btn-custom" type="button">Login</button>
+                </form>
+            </div>
+
+            <!-- TAB REGISTER -->
+            <div class="tab-pane fade" id="register-panel">
+                <form id="signup-form">
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" id="reg-fullname" placeholder="Nguyễn Hữu Trung" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="reg-email" placeholder="trungnh@hcmute.edu.vn" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" id="reg-password" placeholder="123456" required>
+                    </div>
+                    <button id="btn-register" class="btn btn-custom" type="button">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="alert-msg" class="mt-3"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="/js/mainjs.js"></script>
+</body>
+</html>
